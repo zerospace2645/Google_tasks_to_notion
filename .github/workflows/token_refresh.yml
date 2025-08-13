@@ -1,32 +1,32 @@
-name: Google Token Refresh
+# name: Google Token Refresh
 
-on:
-  # schedule:
-  #   - cron: '0 0 * * *'  # 매일 UTC 00:00 (한국 시간 09:00)에 실행
-  workflow_dispatch:  # 수동 실행 가능
+# on:
+#   # schedule:
+#   #   - cron: '0 0 * * *'  # 매일 UTC 00:00 (한국 시간 09:00)에 실행
+#   workflow_dispatch:  # 수동 실행 가능
 
-jobs:
-  refresh:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
+# jobs:
+#   refresh:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
       
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.9'
+#       - name: Set up Python
+#         uses: actions/setup-python@v2
+#         with:
+#           python-version: '3.9'
       
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+#       - name: Install dependencies
+#         run: |
+#           python -m pip install --upgrade pip
+#           pip install -r requirements.txt
       
-      - name: Create credential files
-        run: |
-          echo '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}' > credentials.json
-          echo '${{ secrets.GOOGLE_TOKEN }}' > token.json
+#       - name: Create credential files
+#         run: |
+#           echo '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}' > credentials.json
+#           echo '${{ secrets.GOOGLE_TOKEN }}' > token.json
       
-      - name: Run token refresh script
-        env:
-          GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
-        run: python token_refresh.py 
+#       - name: Run token refresh script
+#         env:
+#           GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
+#         run: python token_refresh.py 
